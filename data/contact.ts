@@ -1,5 +1,5 @@
 export const contactInfo = {
-	email: "aymanbadouzi@gmail.com",
+	email: "aymanbdouzi@gmail.com",
 	phone: "+212 623 10 07 73",
 	socialMedia: {
 		github: "https://github.com/itzaymvn",
