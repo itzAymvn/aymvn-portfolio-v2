@@ -13,6 +13,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
 	title: `${about.name} | ${about.title}`,
 	description: about.description,
+	icons: {
+		icon: "/favicon.ico",
+	},
 	keywords: about.keywords,
 }
 
