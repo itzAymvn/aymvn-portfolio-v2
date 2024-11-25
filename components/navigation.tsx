@@ -70,6 +70,11 @@ export function Navigation() {
 							</Link>
 						</NavigationMenuItem>
 						<NavigationMenuItem>
+							<Link href="#resume" legacyBehavior passHref>
+								<NavigationMenuLink className={navigationMenuTriggerStyle()}>Resume</NavigationMenuLink>
+							</Link>
+						</NavigationMenuItem>
+						<NavigationMenuItem>
 							<Link href="#projects" legacyBehavior passHref>
 								<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 									Projects
@@ -99,6 +104,7 @@ export function Navigation() {
 									{[
 										{ href: "/", text: "Home" },
 										{ href: "#skills", text: "Skills" },
+										{ href: "#resume", text: "Resume" },
 										{ href: "#projects", text: "Projects" },
 										{ href: "#contact", text: "Contact" },
 									].map((item, i) => (
