@@ -5,11 +5,13 @@ import { resume } from "@/data/resume"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { useLanguage } from "@/contexts/language-context"
 import { GraduationCapIcon, BriefcaseIcon, AwardIcon } from "lucide-react"
 
 export function Resume() {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { once: true, margin: "0px 0px -200px 0px" })
+	const { t } = useLanguage()
 
 	const containerVariants = {
 		hidden: { opacity: 0, y: 20 },
@@ -47,15 +49,21 @@ export function Resume() {
 						: `${years}y`
 					: `${remainingMonths}m`
 
-			return `${formatDate(startDate)} - Present · ${duration}`
+			return `${formatDate(startDate)} - ${t.resume.experience.current} · ${duration}`
 		}
 		const endDate = new Date(end)
 		return `${formatDate(startDate)} - ${formatDate(endDate)}`
 	}
 
-	const sortedEducation = [...resume.education].sort((a, b) => b.start.getTime() - a.start.getTime())
-	const sortedExperience = [...resume.experience].sort((a, b) => b.start.getTime() - a.start.getTime())
-	const sortedCertificates = [...resume.certificates].sort((a, b) => b.date.getTime() - a.date.getTime())
+	const sortedEducation = [...resume.education].sort(
+		(a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()
+	)
+	const sortedExperience = [...resume.experience].sort(
+		(a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()
+	)
+	const sortedCertificates = [...resume.certificates].sort(
+		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+	)
 
 	return (
 		<section id="resume" className="container space-y-8">
@@ -70,10 +78,10 @@ export function Resume() {
 					variants={itemVariants}
 					className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
 				>
-					Resume
+					{t.resume.title}
 				</motion.h2>
 				<motion.p variants={itemVariants} className="mt-4 text-muted-foreground">
-					My educational and professional journey
+					{t.resume.subtitle}
 				</motion.p>
 			</motion.div>
 
@@ -89,8 +97,8 @@ export function Resume() {
 							<div className="mb-2 inline-block rounded-lg bg-primary/10 p-2 text-primary">
 								<GraduationCapIcon className="h-6 w-6" />
 							</div>
-							<CardTitle>Education</CardTitle>
-							<CardDescription>Academic background</CardDescription>
+							<CardTitle>{t.resume.education.title}</CardTitle>
+							<CardDescription>{t.resume.education.subtitle}</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<div className="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:via-primary/20 before:to-transparent">
@@ -119,8 +127,8 @@ export function Resume() {
 							<div className="mb-2 inline-block rounded-lg bg-primary/10 p-2 text-primary">
 								<BriefcaseIcon className="h-6 w-6" />
 							</div>
-							<CardTitle>Experience</CardTitle>
-							<CardDescription>Professional journey</CardDescription>
+							<CardTitle>{t.resume.experience.title}</CardTitle>
+							<CardDescription>{t.resume.experience.subtitle}</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<div className="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:via-primary/20 before:to-transparent">
@@ -137,7 +145,11 @@ export function Resume() {
 													{getDateRange(exp.start, exp.end)}
 												</p>
 												<span className="text-xs text-primary">•</span>
-												<p className="text-xs text-muted-foreground">{exp.type}</p>
+												<p className="text-xs text-muted-foreground">
+													{exp.type === "Full-time"
+														? t.resume.experience.type.fullTime
+														: t.resume.experience.type.intern}
+												</p>
 											</div>
 										</div>
 									</div>
@@ -153,8 +165,8 @@ export function Resume() {
 							<div className="mb-2 inline-block rounded-lg bg-primary/10 p-2 text-primary">
 								<AwardIcon className="h-6 w-6" />
 							</div>
-							<CardTitle>Certificates</CardTitle>
-							<CardDescription>Professional certifications</CardDescription>
+							<CardTitle>{t.resume.certificates.title}</CardTitle>
+							<CardDescription>{t.resume.certificates.subtitle}</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<div className="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:via-primary/20 before:to-transparent">

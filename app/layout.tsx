@@ -8,6 +8,7 @@ import { ColorScript } from "@/components/color-script"
 import { MousePointer } from "@/components/mouse-pointer"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { PageTransition } from "@/components/page-transition"
+import { LanguageProvider } from "@/contexts/language-context"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -31,14 +32,16 @@ export default function RootLayout({
 			</head>
 			<body className={`${inter.className} overflow-x-hidden`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-					<ScrollProgress />
-					<MousePointer />
-					<Navigation />
-					<main className="relative min-h-screen bg-background">
-						<PageTransition>
-							{children}
-						</PageTransition>
-					</main>
+					<LanguageProvider>
+						<ScrollProgress />
+						<MousePointer />
+						<Navigation />
+						<main className="relative min-h-screen bg-background">
+							<PageTransition>
+								{children}
+							</PageTransition>
+						</main>
+					</LanguageProvider>
 				</ThemeProvider>
 			</body>
 		</html>

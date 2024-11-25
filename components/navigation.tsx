@@ -1,19 +1,13 @@
 "use client"
 
-import {
-	NavigationMenu,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { Menu } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { MenuIcon } from "lucide-react"
 import { useState } from "react"
-import { ColorToggle } from "./color-toggle"
-import { ModeToggle } from "./mode-toggle"
-import { Button } from "./ui/button"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
+import { ModeToggle } from "./mode-toggle"
+import { ColorToggle } from "./color-toggle"
+import { LanguageToggle } from "./language-toggle"
 
 export function Navigation() {
 	const [isOpen, setIsOpen] = useState(false)
@@ -21,75 +15,72 @@ export function Navigation() {
 	const menuVariants = {
 		hidden: {
 			opacity: 0,
-			y: -20,
+			height: 0,
+			transition: {
+				duration: 0.2,
+				ease: "easeInOut",
+			},
 		},
 		visible: {
 			opacity: 1,
-			y: 0,
+			height: "auto",
 			transition: {
 				duration: 0.2,
+				ease: "easeInOut",
 			},
 		},
 		exit: {
 			opacity: 0,
-			y: -20,
+			height: 0,
 			transition: {
 				duration: 0.2,
+				ease: "easeInOut",
 			},
 		},
 	}
 
 	const itemVariants = {
-		hidden: { opacity: 0, x: -20 },
+		hidden: {
+			opacity: 0,
+			x: -20,
+		},
 		visible: (i: number) => ({
 			opacity: 1,
 			x: 0,
 			transition: {
 				delay: i * 0.1,
 				duration: 0.2,
+				ease: "easeInOut",
 			},
 		}),
 	}
 
 	return (
-		<div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+		<header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 			<div className="container flex h-14 items-center">
-				<Button variant="ghost" className="md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
-					<Menu className="h-6 w-6" />
+				<Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+					<MenuIcon className="h-6 w-6" />
+					<span className="sr-only">Toggle menu</span>
 				</Button>
-				<NavigationMenu className="hidden md:block">
-					<NavigationMenuList>
-						<NavigationMenuItem>
-							<Link href="/" legacyBehavior passHref>
-								<NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
-							</Link>
-						</NavigationMenuItem>
-						<NavigationMenuItem>
-							<Link href="#skills" legacyBehavior passHref>
-								<NavigationMenuLink className={navigationMenuTriggerStyle()}>Skills</NavigationMenuLink>
-							</Link>
-						</NavigationMenuItem>
-						<NavigationMenuItem>
-							<Link href="#resume" legacyBehavior passHref>
-								<NavigationMenuLink className={navigationMenuTriggerStyle()}>Resume</NavigationMenuLink>
-							</Link>
-						</NavigationMenuItem>
-						<NavigationMenuItem>
-							<Link href="#projects" legacyBehavior passHref>
-								<NavigationMenuLink className={navigationMenuTriggerStyle()}>
-									Projects
-								</NavigationMenuLink>
-							</Link>
-						</NavigationMenuItem>
-						<NavigationMenuItem>
-							<Link href="#contact" legacyBehavior passHref>
-								<NavigationMenuLink className={navigationMenuTriggerStyle()}>
-									Contact
-								</NavigationMenuLink>
-							</Link>
-						</NavigationMenuItem>
-					</NavigationMenuList>
-				</NavigationMenu>
+				<div className="hidden md:flex">
+					<nav className="flex items-center space-x-6 text-sm font-medium p-6">
+						<Link href="/" className="transition-colors hover:text-foreground/80">
+							Home
+						</Link>
+						<Link href="#skills" className="transition-colors hover:text-foreground/80">
+							Skills
+						</Link>
+						<Link href="#resume" className="transition-colors hover:text-foreground/80">
+							Resume
+						</Link>
+						<Link href="#projects" className="transition-colors hover:text-foreground/80">
+							Projects
+						</Link>
+						<Link href="#contact" className="transition-colors hover:text-foreground/80">
+							Contact
+						</Link>
+					</nav>
+				</div>
 				<AnimatePresence>
 					{isOpen && (
 						<motion.div
@@ -129,11 +120,12 @@ export function Navigation() {
 						</motion.div>
 					)}
 				</AnimatePresence>
-				<div className="ml-auto flex items-center mr-4">
+				<div className="ml-auto flex items-center gap-2">
+					<LanguageToggle />
 					<ColorToggle />
 					<ModeToggle />
 				</div>
 			</div>
-		</div>
+		</header>
 	)
 }

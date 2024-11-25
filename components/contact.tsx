@@ -1,18 +1,20 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { contactInfo } from "@/data/contact"
-import { MailIcon, MessageSquareIcon, PhoneIcon } from "lucide-react"
+import { MailIcon, MessageSquareIcon } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { useLanguage } from "@/contexts/language-context"
+import { Button } from "./ui/button"
+import { Input } from "./ui/input"
+import { Textarea } from "./ui/textarea"
 
 export function Contact() {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { once: true, margin: "0px 0px -200px 0px" })
+	const { t } = useLanguage()
 
 	const containerVariants = {
 		hidden: { opacity: 0, y: 20 },
@@ -44,10 +46,10 @@ export function Contact() {
 					variants={itemVariants}
 					className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
 				>
-					Get in Touch
+					{t.contact.title}
 				</motion.h2>
 				<motion.p variants={itemVariants} className="mt-4 text-muted-foreground">
-					Feel free to reach out for collaborations or just a friendly hello
+					{t.contact.subtitle}
 				</motion.p>
 			</motion.div>
 			<motion.div
@@ -59,15 +61,14 @@ export function Contact() {
 				<motion.div variants={itemVariants}>
 					<Card>
 						<CardHeader>
-							<CardTitle>Contact Information</CardTitle>
-							<CardDescription>Here are the ways you can reach me</CardDescription>
+							<CardTitle>{t.contact.title}</CardTitle>
+							<CardDescription>{t.contact.subtitle}</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-4">
 							<div className="flex items-center gap-3">
 								<MailIcon className="h-5 w-5 text-primary" />
 								<span>{contactInfo.email}</span>
 							</div>
-							
 							<div className="flex items-center gap-3">
 								<MessageSquareIcon className="h-5 w-5 text-primary" />
 								<span>{contactInfo.socialMedia.linkedin}</span>
@@ -78,31 +79,45 @@ export function Contact() {
 				<motion.div variants={itemVariants}>
 					<Card>
 						<CardHeader>
-							<CardTitle>Send a Message</CardTitle>
+							<CardTitle>{t.contact.form.title}</CardTitle>
 							<CardDescription>
-								This form is currently not functional. Email me directly at {contactInfo.email}
+								{t.contact.form.notFunctional} {contactInfo.email}
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-4">
 							<div className="space-y-2">
-								<Input placeholder="Your Name" disabled title="Form not yet functional" />
+								<Input 
+                  placeholder={t.contact.form.name} 
+                  disabled 
+                  title={t.contact.form.notFunctional}
+                />
 							</div>
 							<div className="space-y-2">
-								<Input type="email" placeholder="Your Email" disabled title="Form not yet functional" />
+								<Input 
+                  type="email" 
+                  placeholder={t.contact.form.email} 
+                  disabled 
+                  title={t.contact.form.notFunctional}
+                />
 							</div>
 							<div className="space-y-2">
 								<Textarea
-									placeholder="Your Message"
+									placeholder={t.contact.form.message}
 									className="min-h-[100px]"
 									disabled
-									title="Form not yet functional"
+									title={t.contact.form.notFunctional}
 								/>
 							</div>
-							<Button className="w-full" disabled title="Form not yet functional" aria-label="Send Message">
-								Send Message
+							<Button
+								className="w-full"
+								disabled
+								title={t.contact.form.notFunctional}
+								aria-label={t.contact.form.send}
+							>
+								{t.contact.form.send}
 							</Button>
 							<p className="text-sm text-muted-foreground">
-								Form functionality coming soon. Please use the contact information provided.
+								{t.contact.form.comingSoon}
 							</p>
 						</CardContent>
 					</Card>

@@ -8,10 +8,12 @@ import { Button } from "./ui/button"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { useLanguage } from "@/contexts/language-context"
 
 export function Hero() {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { once: true })
+	const { t } = useLanguage()
 
 	const containerVariants = {
 		hidden: { opacity: 0, y: 20 },
@@ -47,10 +49,10 @@ export function Hero() {
 				</div>
 			</motion.div>
 			<motion.h1 variants={itemVariants} className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-				Hi, I'm <span className="gradient-text">{about.name}</span>
+				{t.hero.greeting} <span className="gradient-text">{about.name}</span>
 			</motion.h1>
-			<motion.p variants={itemVariants} className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-				{about.description}
+			<motion.p variants={itemVariants} className="mt-4 text-muted-foreground max-w-[42rem]">
+				{t.hero.description}
 			</motion.p>
 			<motion.div variants={itemVariants} className="flex gap-4">
 				<Link href={contactInfo.socialMedia.github} target="_blank">

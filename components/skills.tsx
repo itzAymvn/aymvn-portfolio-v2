@@ -5,10 +5,12 @@ import { skills } from "@/data/skills"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { useLanguage } from "@/contexts/language-context"
 
 export function Skills() {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { once: true, margin: "0px 0px -200px 0px" })
+	const { t, language } = useLanguage()
 
 	const containerVariants = {
 		hidden: { opacity: 0, y: 20 },
@@ -40,19 +42,19 @@ export function Skills() {
 					variants={itemVariants}
 					className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
 				>
-					Skills & Expertise
+					{t.skills.title}
 				</motion.h2>
 				<motion.p variants={itemVariants} className="mt-4 text-muted-foreground">
-					Here are some of the technologies and tools I work with
+					{t.skills.subtitle}
 				</motion.p>
 			</motion.div>
 			<motion.div
 				variants={containerVariants}
 				initial="hidden"
 				animate={isInView ? "visible" : "hidden"}
-				className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+				className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
 			>
-				{skills.map((skill) => {
+				{skills[language].map((skill) => {
 					return (
 						<motion.div key={skill.title} variants={itemVariants}>
 							<Card className="transition-all duration-300 hover:bg-primary/5">
