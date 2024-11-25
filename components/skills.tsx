@@ -54,13 +54,20 @@ export function Skills() {
 				animate={isInView ? "visible" : "hidden"}
 				className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
 			>
-				{skills[language].map((skill) => {
+				{skills[language as keyof typeof skills].map((skill: {
+					title: string;
+					icon: React.ComponentType;
+					description: string;
+					technologies: string[];
+				}) => {
 					return (
 						<motion.div key={skill.title} variants={itemVariants}>
 							<Card className="transition-all duration-300 hover:bg-primary/5">
 								<CardHeader>
 									<div className="mb-2 inline-block rounded-lg bg-primary/10 p-2 text-primary">
-										<skill.icon className="h-6 w-6" />
+										<div className="h-6 w-6">
+											<skill.icon />
+										</div>
 									</div>
 									<CardTitle>{skill.title}</CardTitle>
 									<CardDescription>{skill.description}</CardDescription>

@@ -57,7 +57,14 @@ export function Projects() {
 				animate={isInView ? "visible" : "hidden"}
 				className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
 			>
-				{projects[language].map((project) => (
+				{projects[language as keyof typeof projects].map((project: {
+					title: string;
+					description: string;
+					image: string;
+					tags: string[];
+					demoUrl: string | null;
+					githubUrl: string;
+				}) => (
 					<motion.div key={project.title} variants={itemVariants}>
 						<Card className="overflow-hidden">
 							<CardHeader>

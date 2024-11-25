@@ -65,4 +65,36 @@ export const skills = {
 			technologies: ["PHP", "JavaScript", "TypeScript", "Python"],
 		},
 	],
+	ar: [
+		{
+			title: "تطوير الواجهة الأمامية",
+			description: "إنشاء واجهات مستخدم متفاعلة ومتعددة الأغراض",
+			icon: PaintbrushIcon,
+			technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+		},
+		{
+			title: "تطوير الواجهة الخلفية",
+			description: "بناء تطبيقات جانب الخادم الموثوق بها",
+			icon: ServerIcon,
+			technologies: ["Laravel", "PHP", "Node.js", "Express"],
+		},
+		{
+			title: "قواعد البيانات والـ APIs",
+			description: "إدارة البيانات وبناء الـ APIs",
+			icon: DatabaseIcon,
+			technologies: ["MySQL", "PostgreSQL", "MongoDB"],
+		},
+		{
+			title: "أدوات وDevOps",
+			description: "استخدام أدوات وممارسات التطوير الحديثة",
+			icon: WrenchIcon,
+			technologies: ["Git", "Docker", "AWS", "CI/CD"],
+		},
+		{
+			title: "اللغات",
+			description: "اللغات البرمجية التي أستخدمها",
+			icon: Code2Icon,
+			technologies: ["PHP", "JavaScript", "TypeScript", "Python"],
+		},
+	],
 }
