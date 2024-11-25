@@ -5,6 +5,9 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ColorScript } from "@/components/color-script"
+import { MousePointer } from "@/components/mouse-pointer"
+import { ScrollProgress } from "@/components/scroll-progress"
+import { PageTransition } from "@/components/page-transition"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -23,10 +26,16 @@ export default function RootLayout({
 			<head>
 				<ColorScript />
 			</head>
-			<body className={inter.className}>
+			<body className={`${inter.className} overflow-x-hidden`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+					<ScrollProgress />
+					<MousePointer />
 					<Navigation />
-					<main className="min-h-screen bg-background">{children}</main>
+					<main className="relative min-h-screen bg-background">
+						<PageTransition>
+							{children}
+						</PageTransition>
+					</main>
 				</ThemeProvider>
 			</body>
 		</html>

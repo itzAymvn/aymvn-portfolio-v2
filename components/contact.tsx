@@ -25,6 +25,7 @@ export function Contact() {
 							<MailIcon className="h-5 w-5 text-primary" />
 							<span>{contactInfo.email}</span>
 						</div>
+						
 						<div className="flex items-center gap-3">
 							<MessageSquareIcon className="h-5 w-5 text-primary" />
 							<span>{contactInfo.socialMedia.linkedin}</span>
