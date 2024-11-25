@@ -1,5 +1,5 @@
 export const about = {
-	name: "Ayman Badouzi",
+	name: "Ayman",
 	title: "Full Stack Developer",
 	description:
 		"A passionate full-stack developer crafting beautiful and functional web experiences. I specialize in React, Next.js, and modern web technologies.",
