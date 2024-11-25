@@ -12,12 +12,29 @@ const colors = [
 	{ name: "Red", value: "0 84% 60%" },
 	{ name: "Orange", value: "24 95% 53%" },
 	{ name: "Pink", value: "330 81% 60%" },
+	{ name: "Purple", value: "272 81% 53%" },
+	{ name: "Teal", value: "171 77% 44%" },
+	{ name: "Yellow", value: "48 96% 53%" },
+	{ name: "Cyan", value: "190 95% 39%" },
+	{ name: "Indigo", value: "243 75% 59%" },
+	{ name: "Lime", value: "84 81% 44%" },
+	{ name: "Rose", value: "336 80% 58%" },
+	{ name: "Sky", value: "199 89% 48%" },
+	{ name: "Amber", value: "38 92% 50%" },
 ]
 
 export function ColorToggle() {
 	const setAccentColor = (color: string) => {
 		document.documentElement.style.setProperty("--accent-color", color)
+		localStorage.setItem("accent-color", color)
 	}
+
+	React.useEffect(() => {
+		const savedColor = localStorage.getItem("accent-color")
+		if (savedColor) {
+			document.documentElement.style.setProperty("--accent-color", savedColor)
+		}
+	}, [])
 
 	return (
 		<DropdownMenu>
