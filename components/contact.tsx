@@ -86,19 +86,19 @@ export function Contact() {
 						</CardHeader>
 						<CardContent className="space-y-4">
 							<div className="space-y-2">
-								<Input 
-                  placeholder={t.contact.form.name} 
-                  disabled 
-                  title={t.contact.form.notFunctional}
-                />
+								<Input
+									placeholder={t.contact.form.name}
+									disabled
+									title={t.contact.form.notFunctional}
+								/>
 							</div>
 							<div className="space-y-2">
-								<Input 
-                  type="email" 
-                  placeholder={t.contact.form.email} 
-                  disabled 
-                  title={t.contact.form.notFunctional}
-                />
+								<Input
+									type="email"
+									placeholder={t.contact.form.email}
+									disabled
+									title={t.contact.form.notFunctional}
+								/>
 							</div>
 							<div className="space-y-2">
 								<Textarea
@@ -116,9 +116,7 @@ export function Contact() {
 							>
 								{t.contact.form.send}
 							</Button>
-							<p className="text-sm text-muted-foreground">
-								{t.contact.form.comingSoon}
-							</p>
+							<p className="text-sm text-muted-foreground">{t.contact.form.comingSoon}</p>
 						</CardContent>
 					</Card>
 				</motion.div>
