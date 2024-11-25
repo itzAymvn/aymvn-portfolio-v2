@@ -9,6 +9,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { useLanguage } from "@/contexts/language-context"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
 
 export function Projects() {
 	const ref = useRef(null)
@@ -57,68 +58,81 @@ export function Projects() {
 				animate={isInView ? "visible" : "hidden"}
 				className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
 			>
-				{projects[language as keyof typeof projects].map((project: {
-					title: string;
-					description: string;
-					image: string;
-					tags: string[];
-					demoUrl: string | null;
-					githubUrl: string;
-				}) => (
-					<motion.div key={project.title} variants={itemVariants}>
-						<Card className="overflow-hidden">
-							<CardHeader>
-								<CardTitle>{project.title}</CardTitle>
-								<CardDescription>{project.description}</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<div className="relative aspect-video overflow-hidden rounded-md">
-									{project.image ? (
-										<Image
-											src={project.image}
-											alt={project.title}
-											className="object-cover"
-											fill
-											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-										/>
-									) : (
-										<div className="flex h-full items-center justify-center bg-secondary">
-											<span className="text-sm text-muted-foreground">{t.projects.noPreview}</span>
-										</div>
+				{projects[language as keyof typeof projects].map(
+					(project: {
+						title: string
+						description: string
+						image: string
+						tags: string[]
+						demoUrl: string | null
+						githubUrl: string
+					}) => (
+						<motion.div key={project.title} variants={itemVariants}>
+							<Card className="overflow-hidden h-full">
+								<CardHeader>
+									<CardTitle>{project.title}</CardTitle>
+									<TooltipProvider>
+										<Tooltip>
+											<TooltipTrigger asChild>
+												<CardDescription className="line-clamp-2">
+													{project.description}
+												</CardDescription>
+											</TooltipTrigger>
+											<TooltipContent className="max-w-[300px]">{project.description}</TooltipContent>
+										</Tooltip>
+									</TooltipProvider>
+								</CardHeader>
+								<CardContent>
+									<div className="relative aspect-video overflow-hidden rounded-md">
+										{project.image ? (
+											<Image
+												src={project.image}
+												alt={project.title}
+												className="object-cover"
+												fill
+												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+											/>
+										) : (
+											<div className="flex h-full items-center justify-center bg-secondary">
+												<span className="text-sm text-muted-foreground">
+													{t.projects.noPreview}
+												</span>
+											</div>
+										)}
+									</div>
+									<div className="mt-4 flex flex-wrap gap-2">
+										{project.tags.map((tag: string) => (
+											<span
+												key={tag}
+												className="rounded-lg bg-primary/10 px-2.5 py-0.5 text-sm font-medium text-primary"
+											>
+												{tag}
+											</span>
+										))}
+									</div>
+								</CardContent>
+								<CardFooter className="gap-2">
+									{project.demoUrl && (
+										<Button asChild variant="secondary">
+											<a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+												<ExternalLinkIcon className="mr-2 h-4 w-4" />
+												{t.projects.demo}
+											</a>
+										</Button>
 									)}
-								</div>
-								<div className="mt-4 flex flex-wrap gap-2">
-									{project.tags.map((tag: string) => (
-										<span
-											key={tag}
-											className="rounded-lg bg-primary/10 px-2.5 py-0.5 text-sm font-medium text-primary"
-										>
-											{tag}
-										</span>
-									))}
-								</div>
-							</CardContent>
-							<CardFooter className="gap-2">
-								{project.demoUrl && (
-									<Button asChild variant="secondary">
-										<a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-											<ExternalLinkIcon className="mr-2 h-4 w-4" />
-											{t.projects.demo}
-										</a>
-									</Button>
-								)}
-								{project.githubUrl && (
-									<Button asChild variant="outline">
-										<a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-											<GithubIcon className="mr-2 h-4 w-4" />
-											{t.projects.code}
-										</a>
-									</Button>
-								)}
-							</CardFooter>
-						</Card>
-					</motion.div>
-				))}
+									{project.githubUrl && (
+										<Button asChild variant="outline">
+											<a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+												<GithubIcon className="mr-2 h-4 w-4" />
+												{t.projects.code}
+											</a>
+										</Button>
+									)}
+								</CardFooter>
+							</Card>
+						</motion.div>
+					)
+				)}
 			</motion.div>
 		</section>
 	)
