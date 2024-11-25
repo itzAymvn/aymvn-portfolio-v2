@@ -1,35 +1,38 @@
 export const resume = {
-  education: [
-    {
-      degree: "Fullstack Developer",
-      institution: "Institut Spécialisé de Technologie Appliquée",
-      period: "2021 - 2023",
-    },
-    {
-      degree: "Baccaulauréat",
-      institution: "Lycée Ahmed El Bouanani",
-      period: "2019 - 2020",
-    },
-  ],
-  certificates: [
-    {
-      name: "Microsoft Office Specialist: Excel Associate",
-      issuer: "Microsoft",
-      date: "2023",
-    },
-  ],
-  experience: [
-    {
-      title: "Fullstack Developer",
-      company: "MJTech",
-      period: "Sep 2024 - Present",
-      type: "Full-time",
-    },
-    {
-      title: "Fullstack Developer",
-      company: "MJTech",
-      period: "05/2023 - 06/2023",
-      type: "Intern",
-    },
-  ],
-} 
+	education: [
+		{
+			degree: "Fullstack Developer",
+			institution: "Institut Spécialisé de Technologie Appliquée",
+			start: new Date("2021-09-01"),
+			end: new Date("2023-06-01"),
+		},
+		{
+			degree: "Baccaulauréat",
+			institution: "Lycée Ahmed El Bouanani",
+			start: new Date("2019-09-01"),
+			end: new Date("2020-06-01"),
+		},
+	],
+	certificates: [
+		{
+			name: "Microsoft Office Specialist: Excel Associate",
+			issuer: "Microsoft",
+			date: new Date("2023-06-01"),
+		},
+	],
+	experience: [
+		{
+			title: "Fullstack Developer",
+			company: "MJTech",
+			start: new Date("2024-09-01"),
+			type: "Full-time",
+		},
+		{
+			title: "Fullstack Developer",
+			company: "MJTech",
+			start: new Date("2023-05-01"),
+			end: new Date("2023-06-01"),
+			type: "Intern",
+		},
+	],
+}
