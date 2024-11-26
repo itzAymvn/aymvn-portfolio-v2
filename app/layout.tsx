@@ -13,11 +13,31 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
 	title: `${about.name} | ${about.title}`,
+	metadataBase: new URL("https://aymvn.me/"),
 	description: about.description,
-	icons: {
-		icon: "/favicon.ico",
+	openGraph: {
+		title: `${about.name} | ${about.title}`,
+		description: about.description,
+		type: "website",
+		url: "https://aymvn.me/",
+		images: [
+			{
+				url: "https://aymvn.me/images/og.png",
+				width: 1200,
+				height: 630,
+				alt: `${about.name} | ${about.title}`,
+			},
+		],
 	},
 	keywords: about.keywords,
+	applicationName: `${about.name} | ${about.title}`,
+	authors: [
+		{
+			name: about.name,
+			url: "https://aymvn.me/",
+		},
+	],
+	verification: { google: "bhbsjgIT5O1yx-sYXonHHqBZL0yFS95h2UGU8oeO9D4" },
 }
 
 export default function RootLayout({
@@ -37,9 +57,7 @@ export default function RootLayout({
 						<MousePointer />
 						<Navigation />
 						<main className="relative min-h-screen bg-background">
-							<PageTransition>
-								{children}
-							</PageTransition>
+							<PageTransition>{children}</PageTransition>
 						</main>
 					</LanguageProvider>
 				</ThemeProvider>
