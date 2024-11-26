@@ -6,7 +6,8 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { useLanguage } from "@/contexts/language-context"
-import { GraduationCapIcon, BriefcaseIcon, AwardIcon } from "lucide-react"
+import { GraduationCapIcon, BriefcaseIcon, AwardIcon, ExternalLinkIcon } from "lucide-react"
+import Link from "next/link"
 
 export function Resume() {
 	const ref = useRef(null)
@@ -109,7 +110,18 @@ export function Resume() {
 										</div>
 										<div className="ml-14 space-y-1">
 											<h3 className="font-semibold">{edu.degree}</h3>
-											<p className="text-sm text-muted-foreground">{edu.institution}</p>
+											{edu.link ? (
+												<Link
+													href={edu.link}
+													target="_blank"
+													className="text-sm text-muted-foreground hover:underline flex items-center gap-1"
+												>
+													{edu.institution}
+													<ExternalLinkIcon className="h-3 w-3" />
+												</Link>
+											) : (
+												<p className="text-sm text-muted-foreground">{edu.institution}</p>
+											)}
 											<p className="text-xs text-muted-foreground">
 												{getDateRange(edu.start, edu.end)}
 											</p>
@@ -139,7 +151,18 @@ export function Resume() {
 										</div>
 										<div className="ml-14 space-y-1">
 											<h3 className="font-semibold">{exp.title}</h3>
-											<p className="text-sm text-muted-foreground">{exp.company}</p>
+											{exp.link ? (
+												<Link
+													href={exp.link}
+													target="_blank"
+													className="text-sm text-muted-foreground hover:underline flex items-center gap-1"
+												>
+													{exp.company}
+													<ExternalLinkIcon className="h-3 w-3" />
+												</Link>
+											) : (
+												<p className="text-sm text-muted-foreground">{exp.company}</p>
+											)}
 											<div className="flex items-center gap-2">
 												<p className="text-xs text-muted-foreground">
 													{getDateRange(exp.start, exp.end)}
@@ -177,7 +200,18 @@ export function Resume() {
 										</div>
 										<div className="ml-14 space-y-1">
 											<h3 className="font-semibold">{cert.name}</h3>
-											<p className="text-sm text-muted-foreground">{cert.issuer}</p>
+											{cert.link ? (
+												<Link
+													href={cert.link}
+													target="_blank"
+													className="text-sm text-muted-foreground hover:underline flex items-center gap-1"
+												>
+													{cert.issuer}
+													<ExternalLinkIcon className="h-3 w-3" />
+												</Link>
+											) : (
+												<p className="text-sm text-muted-foreground">{cert.issuer}</p>
+											)}
 											<p className="text-xs text-muted-foreground">{formatDate(cert.date)}</p>
 										</div>
 									</div>

@@ -3,6 +3,7 @@ export const resume = {
 		{
 			degree: "Fullstack Developer",
 			institution: "Institut Spécialisé de Technologie Appliquée",
+			link: "https://www.myway.ac.ma/fr/etablissement/P010",
 			start: new Date("2021-09-01"),
 			end: new Date("2023-06-01"),
 		},
@@ -17,6 +18,7 @@ export const resume = {
 		{
 			name: "Microsoft Office Specialist: Excel Associate",
 			issuer: "Microsoft",
+			link: "https://drive.google.com/file/d/1zu-aiFrWBSx_wE0YRXaTdplk129Fl_9S/view?usp=sharing",
 			date: new Date("2023-06-01"),
 		},
 	],
@@ -24,12 +26,14 @@ export const resume = {
 		{
 			title: "Fullstack Developer",
 			company: "MJTech",
+			link: "https://mjtech-solution.com/",
 			start: new Date("2024-09-01"),
 			type: "Full-time",
 		},
 		{
 			title: "Fullstack Developer",
 			company: "MJTech",
+			link: "https://mjtech-solution.com/",
 			start: new Date("2023-05-01"),
 			end: new Date("2023-06-01"),
 			type: "Intern",
