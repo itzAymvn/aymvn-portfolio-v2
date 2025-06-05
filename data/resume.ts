@@ -26,14 +26,12 @@ export const resume = {
 		{
 			title: "Fullstack Developer",
 			company: "MJTech",
-			link: "https://mjtech-solution.com/",
 			start: new Date("2024-09-01"),
 			type: "Full-time",
 		},
 		{
 			title: "Fullstack Developer",
 			company: "MJTech",
-			link: "https://mjtech-solution.com/",
 			start: new Date("2023-05-01"),
 			end: new Date("2023-06-01"),
 			type: "Intern",
