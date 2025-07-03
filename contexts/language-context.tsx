@@ -11,9 +11,13 @@ interface LanguageContextType {
 	language: Language
 	setLanguage: (lang: Language) => void
 	t: Translations
+	isRTL: boolean
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null)
+
+// RTL languages list
+const RTL_LANGUAGES: Language[] = ["ar"]
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
 	const [language, setLanguage] = useState<Language>("en")
@@ -35,7 +39,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 		localStorage.setItem("language", lang)
 		// Update HTML lang attribute
 		document.documentElement.lang = lang
+		// Update HTML dir attribute for RTL support
+		document.documentElement.dir = RTL_LANGUAGES.includes(lang) ? "rtl" : "ltr"
 	}
+
+	// Update direction on language change
+	useEffect(() => {
+		document.documentElement.dir = RTL_LANGUAGES.includes(language) ? "rtl" : "ltr"
+	}, [language])
 
 	const translations = {
 		en,
@@ -43,10 +54,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 		ar,
 	}
 
+	const isRTL = RTL_LANGUAGES.includes(language)
+
 	const value = {
 		language,
 		setLanguage: handleSetLanguage,
 		t: translations[language as keyof typeof translations],
+		isRTL,
 	} as LanguageContextType
 
 	return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
