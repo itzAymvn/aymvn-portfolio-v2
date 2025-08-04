@@ -20,18 +20,9 @@ export const fr = {
 		subtitle: "N'hésitez pas à me contacter pour des collaborations ou simplement pour dire bonjour",
 		email: "Email",
 		phone: "Téléphone",
-		socialMedia: "Réseaux Sociaux",
-		form: {
-			title: "Envoyer un Message",
-			notFunctional: "Ce formulaire n'est pas encore fonctionnel. Contactez-moi directement à",
-			name: "Votre Nom",
-			email: "Votre Email",
-			message: "Votre Message",
-			send: "Envoyer",
-			comingSoon: "Fonctionnalité du formulaire à venir. Veuillez utiliser les informations de contact fournies.",
-		},
-	},
-	resume: {
+                socialMedia: "Réseaux Sociaux",
+        },
+        resume: {
 		title: "CV",
 		subtitle: "Mon parcours professionnel et mes qualifications",
                 education: {
