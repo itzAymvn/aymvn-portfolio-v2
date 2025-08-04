@@ -34,21 +34,24 @@ export const fr = {
 	resume: {
 		title: "CV",
 		subtitle: "Mon parcours professionnel et mes qualifications",
-		education: {
-			title: "Formation",
-			degree: "Diplôme",
-			institution: "Institution",
-		},
-		experience: {
-			title: "Expérience",
-			current: "Actuel",
-			type: {
-				fullTime: "Temps plein",
-				intern: "Stage",
-			},
-		},
-		certificates: {
-			title: "Certificats",
-		},
-	},
+                education: {
+                        title: "Formation",
+                        subtitle: "Voici quelques-unes de mes formations",
+                        degree: "Diplôme",
+                        institution: "Institution",
+                },
+                experience: {
+                        title: "Expérience",
+                        subtitle: "Voici quelques-unes de mes expériences",
+                        current: "Actuel",
+                        type: {
+                                fullTime: "Temps plein",
+                                intern: "Stage",
+                        },
+                },
+                certificates: {
+                        title: "Certificats",
+                        subtitle: "Voici quelques-uns de mes certificats",
+                },
+        },
 }
