@@ -20,18 +20,9 @@ export const en = {
 		subtitle: "Feel free to reach out for collaborations or just a friendly hello",
 		email: "Email",
 		phone: "Phone",
-		socialMedia: "Social Media",
-		form: {
-			title: "Send a Message",
-			notFunctional: "This form is currently not functional. Email me directly at",
-			name: "Your Name",
-			email: "Your Email",
-			message: "Your Message",
-			send: "Send Message",
-			comingSoon: "Form functionality coming soon. Please use the contact information provided.",
-		},
-	},
-	resume: {
+                socialMedia: "Social Media",
+        },
+        resume: {
 		title: "Resume",
 		subtitle: "My professional journey and qualifications",
 		education: {
