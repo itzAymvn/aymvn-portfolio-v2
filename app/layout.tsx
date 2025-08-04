@@ -5,7 +5,6 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ColorScript } from "@/components/color-script"
-import { MousePointer } from "@/components/mouse-pointer"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { PageTransition } from "@/components/page-transition"
 import { LanguageProvider } from "@/contexts/language-context"
@@ -54,7 +53,6 @@ export default function RootLayout({
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<LanguageProvider>
 						<ScrollProgress />
-						<MousePointer />
 						<Navigation />
 						<main className="relative min-h-screen bg-background">
 							<PageTransition>{children}</PageTransition>
